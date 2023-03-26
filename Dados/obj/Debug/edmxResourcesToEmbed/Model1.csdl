@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Relato">
+    <Key>
+      <PropertyRef Name="idrelato" />
+    </Key>
+    <Property Name="idrelato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imagem" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="codtipo" Type="Int32" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TipodeRelato" Relationship="Self.FK_tipo" FromRole="Relato" ToRole="TipodeRelato" />
+    <Property Name="imagem2" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="imagem3" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TipodeRelato">
+    <Key>
+      <PropertyRef Name="codtipo" />
+    </Key>
+    <Property Name="codtipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Relato" Relationship="Self.FK_tipo" FromRole="TipodeRelato" ToRole="Relato" />
+  </EntityType>
+  <Association Name="FK_tipo">
+    <End Role="TipodeRelato" Type="Self.TipodeRelato" Multiplicity="1" />
+    <End Role="Relato" Type="Self.Relato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipodeRelato">
+        <PropertyRef Name="codtipo" />
+      </Principal>
+      <Dependent Role="Relato">
+        <PropertyRef Name="codtipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DadosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Relato" EntityType="Self.Relato" />
+    <EntitySet Name="TipodeRelato" EntityType="Self.TipodeRelato" />
+    <AssociationSet Name="FK_tipo" Association="Self.FK_tipo">
+      <End Role="TipodeRelato" EntitySet="TipodeRelato" />
+      <End Role="Relato" EntitySet="Relato" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

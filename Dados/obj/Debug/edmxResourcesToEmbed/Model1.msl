@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DadosModelStoreContainer" CdmEntityContainer="DadosEntities">
+    <EntitySetMapping Name="Relato">
+      <EntityTypeMapping TypeName="DadosModel.Relato">
+        <MappingFragment StoreEntitySet="Relato">
+          <ScalarProperty Name="imagem3" ColumnName="imagem3" />
+          <ScalarProperty Name="imagem2" ColumnName="imagem2" />
+          <ScalarProperty Name="idrelato" ColumnName="idrelato" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+          <ScalarProperty Name="codtipo" ColumnName="codtipo" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipodeRelato">
+      <EntityTypeMapping TypeName="DadosModel.TipodeRelato">
+        <MappingFragment StoreEntitySet="TipodeRelato">
+          <ScalarProperty Name="codtipo" ColumnName="codtipo" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

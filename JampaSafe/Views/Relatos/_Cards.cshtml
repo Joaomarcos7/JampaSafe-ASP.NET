@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Dados.Relato>
+@{
+    Layout = null;
+   
+}
+
+
+
+@if (Model.AsEnumerable().Count()==0)
+{
+
+
+    <h3 style="position:relative; left:43%">Não Há nenhum Relato ainda!</h3>
+
+}
+else
+{
+    
+
+    foreach (var item in Model)
+    {
+
+<img src="@Url.Action("RetornaUrl",new { id=item.idrelato})"  class="card-img-top card-image" id="image" alt="image">
+<ul class="list-group list-group-flush"> 
+    <li class="list-group-item fw-bold">Tipo:<span class="px-2" id="type">@Html.DisplayFor(modelitem=>item.TipodeRelato.nome)</span></li> 
+    <li class="list-group-item fw-bold">Bairro:<span class="px-2 card-descricao" id="bairro">@Html.DisplayFor(modelitem => item.bairro)</span></li>  
+    <li class="list-group-item fw-bold">Data: <span class="px-2 card-descricao" type="date" id='date'>@Html.DisplayFor(modelitem => item.data)</span></li>  
+    <li class="list-group-item fw-bold">Descrição: <span class="px-2 card-descricao" id="description">@Html.DisplayFor(modelitem=>item.descricao)</span></li>   
+</ul>
+
+<div class="card-body d-flex justify-content-around">
+    <button type="button" class="btn btn-danger card-button" data-action='excluir' id='excluir' data-cod="@item.idrelato">Excluir</button> 
+    <button type="button" class="btn btn-warning card-button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-action='alterar' data-cod="@item.idrelato" id='alterar'>Alterar</button> 
+</div> 
+
+
+
+       }
+
+}
+

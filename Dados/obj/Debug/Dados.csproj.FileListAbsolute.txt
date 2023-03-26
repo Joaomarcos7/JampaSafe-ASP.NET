@@ -1,0 +1,12 @@
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\Dados.dll.config
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\Dados.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\Dados.pdb
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\EntityFramework.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\EntityFramework.xml
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\obj\Debug\Dados.csproj.CoreCompileInputs.cache
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\obj\Debug\Dados.csproj.CopyComplete
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\obj\Debug\Dados.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\obj\Debug\Dados.pdb
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\Dados\obj\Debug\Dados.csproj.AssemblyReference.cache

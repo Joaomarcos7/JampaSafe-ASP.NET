@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Dados.Relato>
+<main>
+
+    <section class="slogan d-flex justify-content-around m-0 m-auto mt-5 mx-4">
+        <div class="frase d-flex flex-column align-self-center">
+            <h2 class="fs-1">Ajude João Pessoa!</h2>
+            <p class="mt-3 fs-4">Encontrou algum problema ambiental?</p>
+            <button id="relatobtn">Relate aqui!</button>
+
+        </div>
+
+        <div id="modal" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid black; background-color:white;padding:20px;z-index:99;display:none;"></div>
+
+        <div class="undraw">
+            <img src="~/imgs/undraw-nature.png" width="350" height="300" alt="imagem ilustrativa de interação internet e meio ambiente">
+        </div>
+    </section>
+
+    <section class="principal mt-5">
+        <h3 class="text-center text-uppercase pt-5 text-black" id="cont"> 0 Problemas relatado(s)</h3>
+       
+        <div class="cards d-flex flex-wrap" id='cards' style="background-color:white;">
+            @Html.Partial("_Cards",Model)
+        </div>
+    </section>
+
+    <section id="section-about" class="about">
+
+        <div class="about-container d-flex justify-content-center align-items-center p-5">
+            <div class="about-image">
+                <img src="~/imgs/about.png" width="480" height="414" alt="sobre nos">
+            </div>
+            <div class="about-us">
+                <p class="text-uppercase fs-6 text-success">sobre nós</p>
+                <h2 class="somos pb-3">Entenda quem somos e por que existimos</h2>
+                <p class="descrip">Nós somos uma equipe que se preocupa com o destino ambiental da nossa cidade. Vemos que crimes contra o meio ambiente vem se tornando cada mês mais recorrentes e os órgãos responsáveis não tomam as medidas adequadas por falta de informação. Nesse âmbito, decidimos criar uma plataforma web bastante acessível e fácil de ser utilizada que agrupa dados e informações em relação aos problemas ambientais da cidade (João Pessoa), diretamente da população, que serão utilizadas pelos líderes governamentais para resolver esses problemas.</p>
+            </div>
+    </section>
+
+
