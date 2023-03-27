@@ -4,18 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Relato">
           <Key>
             <PropertyRef Name="idrelato" />
           </Key>
           <Property Name="idrelato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="imagem" Type="varbinary" MaxLength="50" />
           <Property Name="codtipo" Type="int" Nullable="false" />
           <Property Name="data" Type="date" Nullable="false" />
           <Property Name="bairro" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="descricao" Type="text" />
-          <Property Name="imagem2" Type="varbinary" MaxLength="50" />
           <Property Name="imagem3" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipodeRelato">
@@ -45,7 +43,8 @@
             <End Role="Relato" EntitySet="Relato" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -54,14 +53,12 @@
             <PropertyRef Name="idrelato" />
           </Key>
           <Property Name="idrelato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="imagem" Type="Binary" MaxLength="50" FixedLength="false" />
           <Property Name="codtipo" Type="Int32" Nullable="false" />
           <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TipodeRelato" Relationship="Self.FK_tipo" FromRole="Relato" ToRole="TipodeRelato" />
-          <Property Name="imagem2" Type="Binary" MaxLength="50" FixedLength="false" />
           <Property Name="imagem3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TipodeRelato" Relationship="Self.FK_tipo" FromRole="Relato" ToRole="TipodeRelato" />
         </EntityType>
         <EntityType Name="TipodeRelato">
           <Key>
@@ -100,14 +97,12 @@
           <EntitySetMapping Name="Relato">
             <EntityTypeMapping TypeName="DadosModel.Relato">
               <MappingFragment StoreEntitySet="Relato">
-                <ScalarProperty Name="imagem3" ColumnName="imagem3" />
-                <ScalarProperty Name="imagem2" ColumnName="imagem2" />
                 <ScalarProperty Name="idrelato" ColumnName="idrelato" />
-                <ScalarProperty Name="imagem" ColumnName="imagem" />
                 <ScalarProperty Name="codtipo" ColumnName="codtipo" />
                 <ScalarProperty Name="data" ColumnName="data" />
                 <ScalarProperty Name="bairro" ColumnName="bairro" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="imagem3" ColumnName="imagem3" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

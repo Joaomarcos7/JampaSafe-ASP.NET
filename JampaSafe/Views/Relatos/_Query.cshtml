@@ -1,0 +1,23 @@
+﻿@model IQueryable<Dados.Relato>
+@{
+    Layout = null;
+
+}
+
+
+
+@if (Model.Count() == 0)
+{
+
+
+    <h3 style="position:relative; left:43%;background-color:none;"> Nenhum Relato Encontrado! </h3>
+
+}
+else
+{
+
+    @Html.Partial("_Cards", Model)
+
+}
+
+

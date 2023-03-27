@@ -5,14 +5,12 @@
       <PropertyRef Name="idrelato" />
     </Key>
     <Property Name="idrelato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="imagem" Type="Binary" MaxLength="50" FixedLength="false" />
     <Property Name="codtipo" Type="Int32" Nullable="false" />
     <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="TipodeRelato" Relationship="Self.FK_tipo" FromRole="Relato" ToRole="TipodeRelato" />
-    <Property Name="imagem2" Type="Binary" MaxLength="50" FixedLength="false" />
     <Property Name="imagem3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="TipodeRelato" Relationship="Self.FK_tipo" FromRole="Relato" ToRole="TipodeRelato" />
   </EntityType>
   <EntityType Name="TipodeRelato">
     <Key>

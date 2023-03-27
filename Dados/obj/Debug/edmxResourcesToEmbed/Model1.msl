@@ -4,14 +4,12 @@
     <EntitySetMapping Name="Relato">
       <EntityTypeMapping TypeName="DadosModel.Relato">
         <MappingFragment StoreEntitySet="Relato">
-          <ScalarProperty Name="imagem3" ColumnName="imagem3" />
-          <ScalarProperty Name="imagem2" ColumnName="imagem2" />
           <ScalarProperty Name="idrelato" ColumnName="idrelato" />
-          <ScalarProperty Name="imagem" ColumnName="imagem" />
           <ScalarProperty Name="codtipo" ColumnName="codtipo" />
           <ScalarProperty Name="data" ColumnName="data" />
           <ScalarProperty Name="bairro" ColumnName="bairro" />
           <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="imagem3" ColumnName="imagem3" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

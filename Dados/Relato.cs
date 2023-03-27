@@ -11,16 +11,19 @@ namespace Dados
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Relato
     {
         public int idrelato { get; set; }
-        public byte[] imagem { get; set; }
+        [Display(Name = "Tipo")]
         public int codtipo { get; set; }
         public System.DateTime data { get; set; }
+        [StringLength(50, ErrorMessage = "Limite de 50 caracteres")]
         public string bairro { get; set; }
+        [StringLength(100,ErrorMessage="Limite de 100 caracteres")]
         public string descricao { get; set; }
-        public byte[] imagem2 { get; set; }
+        [Display(Name = "Imagem")]
         public byte[] imagem3 { get; set; }
     
         public virtual TipodeRelato TipodeRelato { get; set; }

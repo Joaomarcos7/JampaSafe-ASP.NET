@@ -1,0 +1,30 @@
+﻿@model IEnumerable<string>
+
+@{
+    Layout = null;
+}
+<div style="display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;">
+    <h3>Ranking dos Bairros</h3>
+
+    @foreach (var item in Model)
+    {
+
+<div>
+
+    @Html.DisplayFor(model=>item.ToUpper()) :
+    @Html.DisplayFor(model=>model.ToList().Where(m=>m==item).Count())
+    <span> ocorrencias</span>
+
+
+</div>
+
+
+    }
+
+
+
+
+</div>
+
+
+

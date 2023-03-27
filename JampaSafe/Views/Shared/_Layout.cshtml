@@ -33,8 +33,8 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Pesquise por tipo..." id="search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="button" id="searchbtn" >Search</button>
                 </form>
             </div>
         </div>
@@ -83,28 +83,52 @@
 
         $(function () {
 
-            $("#relatobtn").on("click", () => {
-               $("#modal").load("Relatos/Create");
+            $("#relatobtn").on("click", async () => {
+             await  $("#modal").load("Relatos/Create");
                 $("#modal").fadeIn();
             })
 
-            $("#excluir").click(() => {
+            $("#excluir").click( async() => {
 
-                let ID = $("#excluir").attr("data-cod");
+                let ID = parseInt($("#excluir").attr("data-cod"));
                 if (confirm("Deseja mesmo excluir esse relato?")) {
-                    $.post("Relatos/Delete", new {id: ID})
+                   await $.post("Relatos/Delete",{id: ID})
                 }
+                window.location.reload();
             })
 
 
 
-            $("#alterar").click(() => {
-
-                let ID= $("#alterar").attr("data-cod");
-                $("#modal").load("Relatos/Edit", new {id:ID})
+            $("#alterar").click(async () => {
+                var ID = parseInt($("#alterar").attr("data-cod"))
+                await $("#modal").load("Relatos/Update", { id: ID }, (data) => {
+                    $("#modal").html(data);
+                }); //sempre quando for alguma ação que precise receber um dado, é melhor passarmos logo com post e nao load. load funciona melhhor com uma view ja pronta!
                 $("#modal").fadeIn();
             })
 
+               // $("#date").text($("#date").text().split("-").reverse().join("/"));
+
+            $("#searchbtn").click(() => {
+
+                let value = $("#search").val();
+                $.post("Relatos/Search", { tipo: value }, (data) => {
+                    $("#cards").html(data)
+                })
+
+              });
+
+     
+
+            $("#ranking").click( async () => {
+
+                await $("#modal").load("Relatos/Ranking", (data) => {
+                    $("#modal").html(data);
+                })
+                $("#modal").fadeIn();
+            })
+
+          
         })
 
     </script>

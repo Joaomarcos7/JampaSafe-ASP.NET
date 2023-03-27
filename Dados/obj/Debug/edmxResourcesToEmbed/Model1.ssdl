@@ -5,12 +5,10 @@
       <PropertyRef Name="idrelato" />
     </Key>
     <Property Name="idrelato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="imagem" Type="varbinary" MaxLength="50" />
     <Property Name="codtipo" Type="int" Nullable="false" />
     <Property Name="data" Type="date" Nullable="false" />
     <Property Name="bairro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="descricao" Type="text" />
-    <Property Name="imagem2" Type="varbinary" MaxLength="50" />
     <Property Name="imagem3" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TipodeRelato">

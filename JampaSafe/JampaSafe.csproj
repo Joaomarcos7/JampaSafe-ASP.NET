@@ -180,6 +180,8 @@
     <Content Include="Views\Relatos\_Cards.cshtml" />
     <Content Include="Views\Relatos\_Create.cshtml" />
     <Content Include="Views\Relatos\_Edit.cshtml" />
+    <Content Include="Views\Relatos\_Query.cshtml" />
+    <Content Include="Views\Relatos\_Ranking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

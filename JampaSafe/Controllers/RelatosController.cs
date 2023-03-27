@@ -41,7 +41,7 @@ namespace JampaSafe.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-
+                    relato.data = relato.data.Date;
                     db.Relato.Add(relato);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -60,7 +60,9 @@ namespace JampaSafe.Controllers
             var model = db.Relato.Find(id);
             return File(model.imagem3, "image/jpeg"); //qual url isso vai gerar no src??
         }
-        [HttpPost]
+
+
+
         public ActionResult Delete(int? id) {
 
 
@@ -78,7 +80,7 @@ namespace JampaSafe.Controllers
         }
 
 
-        public ActionResult Edit(int? id)   //o ? indica que o parametro é opcional, ou seja, ele pode atribuir um valor Nulo
+        public ActionResult Update(int? id)   //o ? indica que o parametro é opcional, ou seja, ele pode atribuir um valor Nulo
         {
 
             if (id == null)
@@ -90,23 +92,50 @@ namespace JampaSafe.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.codtipo = new SelectList(db.TipodeRelato, "codtipo", "nome");
             var relato = db.Relato.Find(id);
             return PartialView("_Edit",relato);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idrelato,data,codtipo,descricao,bairro")] Relato relato) {
+        public ActionResult Edit([Bind(Include = "idrelato,data,codtipo,descricao,bairro")] Relato relato,[Bind(Include ="imagem")] HttpPostedFileBase imagem) {
 
-
-            if (ModelState.IsValid)
+            if (imagem != null && imagem.ContentLength > 0) //VERIFICA SE O ARQUIVO FILE RECEBIDO NÃO É NULO E TB A SUA QTD DE BYTES
             {
+                relato.imagem3 = new byte[imagem.ContentLength];
+                using (var reader = new BinaryReader(imagem.InputStream))
+                {
+                    reader.Read(relato.imagem3, 0, imagem.ContentLength);
+
+                }
+            }
+
+                if (ModelState.IsValid)
+            {
+                relato.data = relato.data.Date;
                 db.Entry(relato).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+
+            ViewBag.codtipo = new SelectList(db.TipodeRelato, "codtipo", "nome");
             return Content("ERRO NA ATUALIZAÇÃO DO RELATO");
+        }
+
+
+        public ActionResult Search(string tipo) {
+
+            var model = db.Relato.Where(m=>m.TipodeRelato.nome.Contains(tipo));
+            return PartialView("_Query", model);
+        
+        }
+
+        public ActionResult Ranking()
+        {
+            var model = db.Relato.Select(m => m.bairro);
+            return PartialView("_Ranking", model);
         }
 
         protected override void Dispose(bool disposing) //POLIFORMISMO DO METODO DISPOSE DA CLASSE CONTROLLER HERDADA
