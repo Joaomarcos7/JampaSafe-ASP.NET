@@ -3,28 +3,34 @@
 @{
     Layout = null;
 }
-<div style="display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;">
-    <h3>Ranking dos Bairros</h3>
-
-    @foreach (var item in Model)
-    {
-
-<div>
-
-    @Html.DisplayFor(model=>item.ToUpper()) :
-    @Html.DisplayFor(model=>model.ToList().Where(m=>m==item).Count())
-    <span> ocorrencias</span>
-
-
+<div style="display:flex;flex-direction:row;justify-content:space-between;">
+    <h3 style="margin-left:8px;color:black;font-weight:bold;">Ranking dos Bairros</h3>
+      <div style="font-size:35px; position:relative;bottom:28px;cursor:pointer;left:20px;"  id="fechamodal" ><i class="fa-solid fa-xmark"></i></div>
 </div>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Bairros</th>
+            <th scope="col">Nº ocorrencias</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Distinct())
+        {
+            <tr>
 
-    }
+                <td>@Html.DisplayFor(model => item)</td>
+                <td>@Html.Action("Ocorrencias",new { bairro=item})</td>
+
+            </tr>
+        }
 
 
 
+        </tbody>
+</table>
 
-</div>
 
-
+@Html.ActionLink("Fechar Ranking","Index")
 

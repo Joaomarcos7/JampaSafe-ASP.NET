@@ -88,9 +88,9 @@
                 $("#modal").fadeIn();
             })
 
-            $("#excluir").click( async() => {
+            $(".excluir").click( async(event) => {
 
-                let ID = parseInt($("#excluir").attr("data-cod"));
+                let ID = parseInt($(event.target).attr("data-cod"));
                 if (confirm("Deseja mesmo excluir esse relato?")) {
                    await $.post("Relatos/Delete",{id: ID})
                 }
@@ -99,8 +99,8 @@
 
 
 
-            $("#alterar").click(async () => {
-                var ID = parseInt($("#alterar").attr("data-cod"))
+            $(".alterar").click(async (event) => {
+                var ID = parseInt($(event.target).attr("data-cod"))
                 await $("#modal").load("Relatos/Update", { id: ID }, (data) => {
                     $("#modal").html(data);
                 }); //sempre quando for alguma ação que precise receber um dado, é melhor passarmos logo com post e nao load. load funciona melhhor com uma view ja pronta!
@@ -111,10 +111,24 @@
 
             $("#searchbtn").click(() => {
 
-                let value = $("#search").val();
-                $.post("Relatos/Search", { tipo: value }, (data) => {
-                    $("#cards").html(data)
-                })
+                if ($("#search").val().length == 0) {
+                    window.location.reload();
+
+                }
+                else {
+
+                    let value = $("#search").val();
+                    $.post("Relatos/Search", { tipo: value }, (data) => {
+                        $("#cards").html(data)
+                    });
+
+                    $.post('Relatos/Cont', { tipo: value }, (data) => {
+                        $("#cont").text(data + " Relato(s) correspondem")
+
+                    }
+                    );
+
+                }
 
               });
 
@@ -128,6 +142,14 @@
                 $("#modal").fadeIn();
             })
 
+
+            $("#fechamodal").click(() => {
+                alert("hello")
+                $("#modal").fadeOut();
+            })
+
+
+          
           
         })
 

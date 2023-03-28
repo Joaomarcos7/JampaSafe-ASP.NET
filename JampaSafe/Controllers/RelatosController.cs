@@ -41,6 +41,7 @@ namespace JampaSafe.Controllers
                 }
                 if (ModelState.IsValid)
                 {
+                    relato.bairro = relato.bairro.ToUpper();
                     relato.data = relato.data.Date;
                     db.Relato.Add(relato);
                     db.SaveChanges();
@@ -113,6 +114,7 @@ namespace JampaSafe.Controllers
 
                 if (ModelState.IsValid)
             {
+                relato.bairro = relato.bairro.ToUpper();
                 relato.data = relato.data.Date;
                 db.Entry(relato).State = EntityState.Modified;
                 db.SaveChanges();
@@ -137,6 +139,31 @@ namespace JampaSafe.Controllers
             var model = db.Relato.Select(m => m.bairro);
             return PartialView("_Ranking", model);
         }
+
+
+        public ActionResult Ocorrencias(string  bairro ) {
+
+            var bairros = db.Relato.Select(m => m.bairro);
+
+            int count = bairros.Where(m => m.Equals(bairro)).Count();
+
+            return Content(count.ToString());
+        }
+
+
+        public ActionResult FormatarData(DateTime data) {
+
+            return Content(data.ToString("dd/MM/yyyy"));
+        }
+
+
+        public ActionResult Cont(string tipo)
+        {
+            var model = db.Relato.Where(m => m.TipodeRelato.nome.Contains(tipo));
+            int cont = model.Count();
+            return Content(cont.ToString());
+        } 
+
 
         protected override void Dispose(bool disposing) //POLIFORMISMO DO METODO DISPOSE DA CLASSE CONTROLLER HERDADA
         {

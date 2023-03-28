@@ -140,3 +140,13 @@ footer {
     transform: scale(1.4);
 }
 
+#tableranking {
+
+border-collapse:collapse;
+
+}
+
+#tableranking tr > td{
+    border:1px solid black;
+}
+
