@@ -31,6 +31,15 @@
         </tbody>
 </table>
 
+@Scripts.Render("~/bundles/jquery")
 
-@Html.ActionLink("Fechar Ranking","Index")
 
+<script>
+    $(function () {
+
+        $("#fechamodal").click(() => {
+            $("#modal").fadeOut();
+        })
+
+    })
+</script>

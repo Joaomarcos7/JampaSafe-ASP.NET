@@ -143,14 +143,36 @@
             })
 
 
-            $("#fechamodal").click(() => {
-                alert("hello")
-                $("#modal").fadeOut();
+            $("#search").focus((event) => {
+                event.preventDefault()
+                $("#search").keyup((event) => {
+                    event.preventDefault();
+                    if (event.keyCode == 13) {
+                        event.preventDefault();
+                        if ($("#search").val().length == 0) {
+                            window.location.reload();
+                        }
+                        else {
+
+                            let value = $("#search").val();
+                            $.post("Relatos/Search", { tipo: value }, (data) => {
+                                $("#cards").html(data)
+                            });
+
+                            $.post('Relatos/Cont', { tipo: value }, (data) => {
+                                $("#cont").text(data + " Relato(s) correspondem")
+
+                            }
+                            );
+
+                        }
+
+                    }
+
+                })
+
             })
 
-
-          
-          
         })
 
     </script>

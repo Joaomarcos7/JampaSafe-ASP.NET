@@ -9,19 +9,27 @@
     @Html.AntiForgeryToken()
 
 
-<div class="form-horizontal">
-    <h4> Criar Relato</h4>
+<div class="form-horizontal" style="color:black;">
+
+
+    <div style="display:flex;flex-direction:row;justify-content:space-between;">
+        <h3 style="margin-left:8px;color:black;font-weight:bold;">Create</h3>
+        <div style="font-size:35px; position:relative;bottom:28px;cursor:pointer;left:20px;" id="fechamodalcreate"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+
+
+
     <br />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-<div class="form-group">
-    @Html.LabelFor(model => model.imagem3, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-       <input name="imagem" type="file"/>
-        @Html.ValidationMessageFor(model => model.imagem3, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.imagem3, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="imagem" type="file" />
+            @Html.ValidationMessageFor(model => model.imagem3, "", new { @class = "text-danger" })
+        </div>
     </div>
-</div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.data, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,9 +48,17 @@
     </div>
 
     <div class="form-group">
+       <label for="cep">CEP</label>
+        <div class="col-md-10">
+            <input type="text" id ="CEP" name="cep" placeholder="Exemplo: 000000000-00 " />
+        </div>
+    </div>
+
+
+    <div class="form-group">
         @Html.LabelFor(model => model.bairro, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="text" name="bairro" id="bairro" />
             @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -57,18 +73,69 @@
 
     <div class="form-group" style="margin:8px 0px;">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default " id="submit" style="border:1px solid black"/>
+            <input type="submit" value="Create" class="btn btn-default " id="submit" style="border:1px solid black" />
         </div>
     </div>
-</div>
-
-
-<div>
-    @Html.ActionLink("Voltar", "Index")
 </div>
 
 
 
 }
 
+
+<div id="errocep" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid black;background-color:black;color:red;padding-left:7px;"></div>
+
 @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+ 
+    $(function () {
+
+
+        $("#CEP").blur(async () => {
+            let valor = $("#CEP").val();
+            let pattern = /^[0-9]{5}-[0-9]{3}$/
+            let regex = RegExp(pattern)
+
+            if (regex.test(valor)) {
+                let cep = valor.replace("-", '')
+                await $.getJSON("https://viacep.com.br/ws/" + cep + "/json/", (json) => { //metodo especial de pegar JSON
+                    if ("erro" in json) {
+
+                        $("#errocep").text("CEP INVÁLIDO! Tente Novamente")
+                        $("#errocep").fadeIn()
+                        $("#errocep").animate({ display: 'block' }, 2000, () => {
+                            $("#errocep").fadeOut();
+                        })
+                        $("#bairro").val(" ");
+                    }
+                    else {
+                        let bairro = json.bairro;
+                        $("#bairro").val(bairro);
+                    }
+                })
+            }
+
+            else {
+                $("#errocep").text("CEP INVÁLIDO! Tente Novamente")
+                $("#errocep").fadeIn()
+                $("#errocep").animate({ display: 'block' }, 2000, ()=>{
+                    $("#errocep").fadeOut();
+                })
+                $("#bairro").val(" ");
+            }
+           
+        } )
+
+
+
+
+        $("#fechamodalcreate").click(() => {
+            $("#modal").fadeOut();
+        })
+
+
+
+    })
+</script>
