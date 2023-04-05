@@ -40,9 +40,9 @@
         </div>
     </nav>
 
-
+    <div id="renderbody">
     @RenderBody()
-
+     </div>
     <section id="section-contact" class="contact">
         <div class="contact-container d-flex justify-content-around align-items-center p-5 m-5">
             <div class="contact-us w-25">
@@ -84,7 +84,7 @@
         $(function () {
 
             $("#relatobtn").on("click", async () => {
-             await  $("#modal").load("Relatos/Create");
+             await  $("#modal").load("/Relatos/Create");
                 $("#modal").fadeIn();
             })
 
@@ -92,16 +92,16 @@
 
                 let ID = parseInt($(event.target).attr("data-cod"));
                 if (confirm("Deseja mesmo excluir esse relato?")) {
-                   await $.post("Relatos/Delete",{id: ID})
+                   await $.post("/Relatos/Delete",{id: ID})
                 }
-                window.location.reload();
+                window.Location.reload();
             })
 
 
 
             $(".alterar").click(async (event) => {
                 var ID = parseInt($(event.target).attr("data-cod"))
-                await $("#modal").load("Relatos/Update", { id: ID }, (data) => {
+                await $("#modal").load("/Relatos/Update", { id: ID }, (data) => {
                     $("#modal").html(data);
                 }); //sempre quando for alguma ação que precise receber um dado, é melhor passarmos logo com post e nao load. load funciona melhhor com uma view ja pronta!
                 $("#modal").fadeIn();
@@ -118,7 +118,7 @@
                 else {
 
                     let value = $("#search").val();
-                    $.post("Relatos/Search", { tipo: value }, (data) => {
+                    $.post("/Relatos/Search", { tipo: value }, (data) => {
                         $("#cards").html(data)
                     });
 
@@ -136,7 +136,7 @@
 
             $("#ranking").click( async () => {
 
-                await $("#modal").load("Relatos/Ranking", (data) => {
+                await $("#modal").load("/Relatos/Ranking", (data) => {
                     $("#modal").html(data);
                 })
                 $("#modal").fadeIn();
@@ -155,11 +155,11 @@
                         else {
 
                             let value = $("#search").val();
-                            $.post("Relatos/Search", { tipo: value }, (data) => {
+                            $.post("/Relatos/Search", { tipo: value }, (data) => {
                                 $("#cards").html(data)
                             });
 
-                            $.post('Relatos/Cont', { tipo: value }, (data) => {
+                            $.post('/Relatos/Cont', { tipo: value }, (data) => {
                                 $("#cont").text(data + " Relato(s) correspondem")
 
                             }

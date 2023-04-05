@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dados;
+using System.Net.Mail;
 using JampaSafe.Models;
 
 
@@ -45,6 +46,7 @@ namespace JampaSafe.Controllers
                     relato.data = relato.data.Date;
                     db.Relato.Add(relato);
                     db.SaveChanges();
+                    EnviaEmail(Json(relato));
                     return RedirectToAction("Index");
                 }
             }
@@ -162,7 +164,30 @@ namespace JampaSafe.Controllers
             var model = db.Relato.Where(m => m.TipodeRelato.nome.Contains(tipo));
             int cont = model.Count();
             return Content(cont.ToString());
-        } 
+        }
+
+
+        public void EnviaEmail(JsonResult json) {
+
+            ////Dados do EMAIL
+            string remetente = "joaomarcos77777.jm@gmail.com";
+            string destinatario = "joaomarcos77777.jm@gmail.com";
+            string assunto = "NOVO RELATO JAMPASAFE";
+            string corpo = json.Data.ToString();
+
+            try
+            {
+                MailMessage msg = new MailMessage(remetente, destinatario, assunto, corpo); //CRIACAO DO OBJETO EMAIL MSG
+                SmtpClient cliente = new SmtpClient("smtp.gmail.com",587); //CRIACAO DO OBJETO SERVIDOR E A PORTA SMTP PROTOCOLO
+                cliente.EnableSsl = true;
+                cliente.Credentials = new NetworkCredential("joaomarcos77777.jm@gmail.com", "xxxxxxxxx"); //CREDENCIAIS DO REMETENTE
+                cliente.Send(msg); //ENVIO DA MSG AO SMPTCLIENTE 
+            }
+            catch(Exception e)
+            {
+               Console.WriteLine(e.ToString());
+            }
+        }
 
 
      

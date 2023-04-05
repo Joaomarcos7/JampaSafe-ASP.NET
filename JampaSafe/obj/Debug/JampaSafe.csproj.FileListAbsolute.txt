@@ -72,3 +72,7 @@ C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\roslyn\System.Buffers
 C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\roslyn\System.Memory.dll
 C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+C:\Users\JOÃO MARCOS\source\repos\JampaSafe\JampaSafe\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
